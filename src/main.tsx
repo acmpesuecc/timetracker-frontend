@@ -1,19 +1,21 @@
-import React, {useState} from 'react'
+import React, {useMemo, useState} from 'react'
 import ReactDOM from 'react-dom/client'
 import {ApolloClient, ApolloProvider, InMemoryCache} from "@apollo/client";
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 import Login from "./Login";
 import {AuthContext, UpdateAuthContext} from "./authContext";
 import Cookies from "universal-cookie";
+import App from "./App/App";
 
-const client = new ApolloClient({
-                                    uri: 'http://localhost:4000/', cache: new InMemoryCache(),
-                                });
 const router = createBrowserRouter([
                                        {
                                            path: "/",
                                            element: <Login/>,
                                        },
+                                       {
+                                           path: "/app",
+                                           element: <App/>
+                                       }
                                    ]);
 
 function getInitialJWT() {
@@ -22,8 +24,15 @@ function getInitialJWT() {
     return (c as string) || ''
 }
 
-function App() {
+function Holder() {
     const [jwt, setJwt] = useState(getInitialJWT)
+    const client = useMemo(() => new ApolloClient({
+                                                      uri: 'http://localhost:4000/',
+                                                      cache: new InMemoryCache(),
+                                                      headers: {Authorization: jwt},
+                                                  }),
+                           [jwt]);
+
     return <AuthContext.Provider value={jwt}>
         <UpdateAuthContext.Provider value={setJwt}>
             <ApolloProvider client={client}>
@@ -35,5 +44,5 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
         .render(<React.StrictMode>
-            <App/>
+            <Holder/>
         </React.StrictMode>,)

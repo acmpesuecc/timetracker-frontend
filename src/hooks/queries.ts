@@ -5,3 +5,12 @@ export const LOGIN = graphql(/* GraphQL */ `
         Login(username: $username, password: $password)
     }
 `)
+
+export const GET_SHEETS = graphql(/* GraphQL */ `
+    query Sheets{
+        Sheets {
+            id,
+            name
+        }
+    }`
+)
