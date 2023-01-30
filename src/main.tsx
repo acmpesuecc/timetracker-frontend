@@ -7,7 +7,7 @@ import {AuthContext, UpdateAuthContext} from "./authContext";
 import Cookies from "universal-cookie";
 
 const client = new ApolloClient({
-                                    uri: 'https://booksnmore.co.in:4001/', cache: new InMemoryCache(),
+                                    uri: 'http://localhost:4000/', cache: new InMemoryCache(),
                                 });
 const router = createBrowserRouter([
                                        {

@@ -2,19 +2,25 @@ import {useContext} from "react";
 import {UpdateAuthContext} from "../authContext";
 import {useMutation} from "@apollo/client";
 import {LOGIN} from "./queries";
+import Cookies from "universal-cookie";
 
 export default function useLogin() {
     const update = useContext(UpdateAuthContext)
     const [mutateFunction] = useMutation(LOGIN)
-    return (username: string, password: string) => {
-        mutateFunction({variables: {username, password}})
-            .then(result => {
-                if (result.data?.Login) {
-                    update(result.data.Login)
-                }
-            })
-            .catch((reason) => {
-                console.log(reason)
-            })
+    return async (username: string, password: string) => {
+        try {
+            const result = await mutateFunction({variables: {username, password}})
+            if (result.data?.Login) {
+                update(result.data.Login)
+                const cookies = new Cookies
+                cookies.set("ath", result.data.Login, {maxAge: 7200})
+                return true
+            } else {
+                return false
+            }
+        } catch (e) {
+            console.log(e)
+            return false
+        }
     }
 }
