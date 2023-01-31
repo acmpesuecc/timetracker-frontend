@@ -10,14 +10,14 @@ function TimeDisplay({time}: { time: number }) {
     return <Typography width={"fit-content"}>{d.toLocaleString()}</Typography>
 }
 
-function DurationDisplay({dur}: { dur: number }) {
+function DurationDisplay({dur ,variant}: { dur: number, variant ?: "h5" }) {
     const hours = ((dur - (dur % 3600)) / 3600).toString()
                                                .padStart(2, "0")
     const minutes = (((dur % 3600) - (dur % 60)) / 60).toString()
                                                       .padStart(2, "0")
     const seconds = (dur % 60).toString().padStart(2, "0")
 
-    return <Typography>{`${hours}:${minutes}:${seconds}`}</Typography>
+    return <Typography variant={variant}>{`${hours}:${minutes}:${seconds}`}</Typography>
 }
 
 function SheetDisplay({_records: __records, hasEnded}: { _records: NRecord[], hasEnded: boolean }) {
@@ -92,6 +92,9 @@ export default function Sheet() {
     return <Grid container alignItems={"center"} direction={"column"} gap={2}>
         <Typography variant={"h3"}>{sheet?.summary?.name}</Typography>
         <SheetDisplay _records={sheet.records} hasEnded={sheet.hasEnded} key={sheet.hasEnded ? "truee" : "falsy"}/>
-        <Button variant={"contained"} onClick={ocf}>Punch {sheet.hasEnded ? "In" : "Out"}</Button>
+        <Grid container justifyContent={"flex-end"} gap={2} width={"45vw"}>
+            <Typography variant={"h5"}><b>Total</b></Typography><DurationDisplay variant={"h5"} dur={sheet.total}/>
+        </Grid>
+        <Button variant={"contained"} sx={{displayPrint : "none"}} onClick={ocf}>Punch {sheet.hasEnded ? "In" : "Out"}</Button>
     </Grid>
 }
