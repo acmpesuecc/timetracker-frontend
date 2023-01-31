@@ -1,12 +1,12 @@
 import {useContext} from "react";
 import {UpdateAuthContext} from "../authContext";
 import {useMutation} from "@apollo/client";
-import {LOGIN} from "./queries";
+import {DO_LOGIN} from "./queries";
 import Cookies from "universal-cookie";
 
 export default function useLogin() {
     const update = useContext(UpdateAuthContext)
-    const [mutateFunction] = useMutation(LOGIN)
+    const [mutateFunction] = useMutation(DO_LOGIN)
     return async (username: string, password: string) => {
         try {
             const result = await mutateFunction({variables: {username, password}})

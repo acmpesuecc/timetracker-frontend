@@ -96,8 +96,8 @@ export type Sheet = {
 export type SheetInfo = {
   __typename?: 'SheetInfo';
   hasEnded: Scalars['Boolean'];
-  records?: Maybe<Array<Maybe<NRecord>>>;
-  summary?: Maybe<Sheet>;
+  records: Array<NRecord>;
+  summary: Sheet;
   total: Scalars['Int'];
 };
 
@@ -119,9 +119,17 @@ export type GetSheetInfoQueryVariables = Exact<{
 }>;
 
 
-export type GetSheetInfoQuery = { __typename?: 'Query', Sheet?: { __typename?: 'SheetInfo', hasEnded: boolean, total: number, summary?: { __typename?: 'Sheet', name: string, id: string } | null, records?: Array<{ __typename?: 'NRecord', event: EventType, id: string, time: number } | null> | null } | null };
+export type GetSheetInfoQuery = { __typename?: 'Query', Sheet?: { __typename?: 'SheetInfo', hasEnded: boolean, total: number, summary: { __typename?: 'Sheet', name: string, id: string }, records: Array<{ __typename?: 'NRecord', event: EventType, id: string, time: number }> } };
+
+export type PunchMutationVariables = Exact<{
+  sheetId: Scalars['ID'];
+}>;
+
+
+export type PunchMutation = { __typename?: 'Mutation', Punch?: string | null };
 
 
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}]}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
 export const SheetsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Sheets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Sheets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<SheetsQuery, SheetsQueryVariables>;
 export const GetSheetInfoDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getSheetInfo"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sheetId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Sheet"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sheetId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sheetId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"summary"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"records"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"time"}}]}},{"kind":"Field","name":{"kind":"Name","value":"hasEnded"}},{"kind":"Field","name":{"kind":"Name","value":"total"}}]}}]}}]} as unknown as DocumentNode<GetSheetInfoQuery, GetSheetInfoQueryVariables>;
+export const PunchDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Punch"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"sheetId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Punch"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"sheetId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"sheetId"}}}]}]}}]} as unknown as DocumentNode<PunchMutation, PunchMutationVariables>;

@@ -32,8 +32,8 @@ type Sheet {
 
 type SheetInfo {
     hasEnded: Boolean!
-    records: [NRecord]
-    summary: Sheet
+    records: [NRecord!]!
+    summary: Sheet!
     total: Int!
 }
 

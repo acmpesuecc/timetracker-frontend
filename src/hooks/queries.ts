@@ -1,6 +1,6 @@
 import {graphql} from "../gql";
 
-export const LOGIN = graphql(/* GraphQL */ `
+export const DO_LOGIN = graphql(/* GraphQL */ `
     mutation Login($username: String!, $password: String!) {
         Login(username: $username, password: $password)
     }
@@ -28,4 +28,9 @@ export const GET_SHEET_INFO = graphql(/* GraphQL */ `query getSheetInfo($sheetId
         hasEnded
         total
     }
+}`)
+
+
+export const DO_PUNCH = graphql(/* GraphQL */`mutation Punch($sheetId: ID!) {
+    Punch(sheetId: $sheetId)
 }`)

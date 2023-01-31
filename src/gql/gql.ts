@@ -16,6 +16,7 @@ const documents = {
     "\n    mutation Login($username: String!, $password: String!) {\n        Login(username: $username, password: $password)\n    }\n                             ": types.LoginDocument,
     "\n    query Sheets{\n        Sheets {\n            id,\n            name\n        }\n    }": types.SheetsDocument,
     "query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n        summary {\n            name,\n            id\n        }\n        records {\n            event,\n            id,\n            time\n        }\n        hasEnded\n        total\n    }\n}": types.GetSheetInfoDocument,
+    "mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n}": types.PunchDocument,
 };
 
 /**
@@ -44,6 +45,10 @@ export function graphql(source: "\n    query Sheets{\n        Sheets {\n        
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n        summary {\n            name,\n            id\n        }\n        records {\n            event,\n            id,\n            time\n        }\n        hasEnded\n        total\n    }\n}"): (typeof documents)["query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n        summary {\n            name,\n            id\n        }\n        records {\n            event,\n            id,\n            time\n        }\n        hasEnded\n        total\n    }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n}"): (typeof documents)["mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
