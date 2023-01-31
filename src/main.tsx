@@ -44,7 +44,7 @@ function getInitialJWT() {
 function Holder() {
     const [jwt, setJwt] = useState(getInitialJWT)
     const client = useMemo(() => new ApolloClient({
-                                                      uri: 'http://localhost:4000/',
+                                                      uri: 'https://tt.samarthr.gq/query',
                                                       cache: new InMemoryCache(),
                                                       headers: {Authorization: jwt},
                                                   }),
