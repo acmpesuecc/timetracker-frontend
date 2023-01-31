@@ -1,6 +1,7 @@
 {
-  "name": "untitled",
-  "private": true,
+  "name": "timetracker-frontend",
+  "private": false,
+  "license": "GPL-3.0-or-later",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
