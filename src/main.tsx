@@ -6,6 +6,7 @@ import Login from "./Login";
 import {AuthContext, UpdateAuthContext} from "./authContext";
 import Cookies from "universal-cookie";
 import App from "./App/App";
+import Sheet from "./App/Sheet";
 
 const router = createBrowserRouter([
                                        {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
                                        },
                                        {
                                            path: "/sheets/:id",
-                                           element: <></>
+                                           element: <Sheet/>
                                        }
                                    ]);
 
