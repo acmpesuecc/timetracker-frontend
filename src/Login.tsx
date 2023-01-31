@@ -14,7 +14,7 @@ function Login() {
         e.preventDefault()
         const status = await login(state.username, state.password)
         if (status){
-            navigate("/app")
+            navigate("/sheets")
         }
     }
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {

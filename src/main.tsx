@@ -13,8 +13,12 @@ const router = createBrowserRouter([
                                            element: <Login/>,
                                        },
                                        {
-                                           path: "/app",
+                                           path: "/sheets",
                                            element: <App/>
+                                       },
+                                       {
+                                           path: "/sheets/:id",
+                                           element: <></>
                                        }
                                    ]);
 
