@@ -17,6 +17,7 @@ const documents = {
     "\n    query Sheets{\n        Sheets {\n            id,\n            name\n        }\n    }": types.SheetsDocument,
     "query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n        summary {\n            name,\n            id\n        }\n        records {\n            event,\n            id,\n            time\n        }\n        hasEnded\n        total\n    }\n}": types.GetSheetInfoDocument,
     "mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n}": types.PunchDocument,
+    "mutation CreateSheet($sheetName: String!, $month: Int!, $year: Int!) {\n    Sheet(sheetName: $sheetName, Month: $month, Year: $year)\n}": types.CreateSheetDocument,
 };
 
 /**
@@ -49,6 +50,10 @@ export function graphql(source: "query getSheetInfo($sheetId: ID!) {\n    Sheet(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n}"): (typeof documents)["mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation CreateSheet($sheetName: String!, $month: Int!, $year: Int!) {\n    Sheet(sheetName: $sheetName, Month: $month, Year: $year)\n}"): (typeof documents)["mutation CreateSheet($sheetName: String!, $month: Int!, $year: Int!) {\n    Sheet(sheetName: $sheetName, Month: $month, Year: $year)\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

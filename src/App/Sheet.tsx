@@ -1,7 +1,7 @@
 import {useParams} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import useSheetInfo from "../hooks/useSheetInfo";
-import {EventType, NRecord} from "../gql/graphql";
+import {NRecord} from "../gql/graphql";
 import {Button, Grid, Table, TableBody, TableCell, TableHead, TableRow, Typography} from "@mui/material";
 import usePunch from "../hooks/usePunch";
 
@@ -10,34 +10,19 @@ function TimeDisplay({time}: { time: number }) {
     return <Typography width={"fit-content"}>{d.toLocaleString()}</Typography>
 }
 
-function DurationDisplay({dur ,variant}: { dur: number, variant ?: "h5" }) {
+function DurationDisplay({dur, variant}: { dur: number, variant?: "h5" }) {
     const hours = ((dur - (dur % 3600)) / 3600).toString()
                                                .padStart(2, "0")
     const minutes = (((dur % 3600) - (dur % 60)) / 60).toString()
                                                       .padStart(2, "0")
-    const seconds = (dur % 60).toString().padStart(2, "0")
+    const seconds = (dur % 60).toString()
+                              .padStart(2, "0")
 
     return <Typography variant={variant}>{`${hours}:${minutes}:${seconds}`}</Typography>
 }
 
-function SheetDisplay({_records: __records, hasEnded}: { _records: NRecord[], hasEnded: boolean }) {
-    let [_records, set_records] = useState(__records.map(r => r))
+function SheetDisplay({_records}: { _records: NRecord[] }) {
     const records: NRecord[][] = []
-    useEffect(() => {
-        if (!hasEnded){
-            const t = setInterval(() => {
-
-                set_records(s => {
-                    return [...s.slice(0, -1), ({event: EventType.End, time: (Math.floor((new Date).getTime() / 1000)), id: "",})]
-                })
-            }, 1000)
-            return () => {
-                clearInterval(t)
-            }
-        } else {
-            return () => {}
-        }
-    }, [__records, hasEnded])
     let tmp: NRecord[] = []
     for (const nRecord in _records) {
         tmp.push(_records[nRecord])
@@ -91,10 +76,11 @@ export default function Sheet() {
     }
     return <Grid container alignItems={"center"} direction={"column"} gap={2}>
         <Typography variant={"h3"}>{sheet?.summary?.name}</Typography>
-        <SheetDisplay _records={sheet.records} hasEnded={sheet.hasEnded} key={sheet.hasEnded ? "truee" : "falsy"}/>
+        <SheetDisplay _records={sheet.records}/>
         <Grid container justifyContent={"flex-end"} gap={2} width={"45vw"}>
             <Typography variant={"h5"}><b>Total</b></Typography><DurationDisplay variant={"h5"} dur={sheet.total}/>
         </Grid>
-        <Button variant={"contained"} sx={{displayPrint : "none"}} onClick={ocf}>Punch {sheet.hasEnded ? "In" : "Out"}</Button>
+        <Button variant={"contained"} sx={{displayPrint: "none"}}
+                onClick={ocf}>Punch {sheet.hasEnded ? "In" : "Out"}</Button>
     </Grid>
 }
