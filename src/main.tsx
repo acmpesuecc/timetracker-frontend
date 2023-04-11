@@ -1,4 +1,3 @@
-
 /*
  * This software has been written with the idea of building a minimalistic time tracker.
  * Copyright (c) 2023.  Samarth Ramesh
@@ -19,6 +18,7 @@ import {AuthContext, UpdateAuthContext} from "./authContext";
 import Cookies from "universal-cookie";
 import App from "./App/App";
 import Sheet from "./App/Sheet";
+import {createTheme, CssBaseline, ThemeProvider, useMediaQuery} from '@mui/material';
 
 const router = createBrowserRouter([
                                        {
@@ -43,20 +43,31 @@ function getInitialJWT() {
 
 function Holder() {
     const [jwt, setJwt] = useState(getInitialJWT)
-    const client = useMemo(() => new ApolloClient({
-                                                      uri: 'https://tt.samarthr.gq/query',
-                                                      cache: new InMemoryCache(),
-                                                      headers: {Authorization: jwt},
-                                                  }),
-                           [jwt]);
-
-    return <AuthContext.Provider value={jwt}>
-        <UpdateAuthContext.Provider value={setJwt}>
-            <ApolloProvider client={client}>
-                <RouterProvider router={router}/>
-            </ApolloProvider>
-        </UpdateAuthContext.Provider>
-    </AuthContext.Provider>
+    const appoloOptins = {
+        uri: 'https://tt.samarthr.gq/query',
+        cache: new InMemoryCache(),
+        headers: {Authorization: jwt},
+    }
+    const client = useMemo(() => new ApolloClient(appoloOptins), [jwt]);
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    const theme = React.useMemo(
+        () => createTheme({
+                            palette: {
+                                mode: prefersDarkMode ? 'dark' : 'light',
+                            },
+                        }),
+        [prefersDarkMode],
+    );
+    return <ThemeProvider theme={theme}>
+        <CssBaseline/>
+        <AuthContext.Provider value={jwt}>
+            <UpdateAuthContext.Provider value={setJwt}>
+                <ApolloProvider client={client}>
+                    <RouterProvider router={router}/>
+                </ApolloProvider>
+            </UpdateAuthContext.Provider>
+        </AuthContext.Provider>
+    </ThemeProvider>
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement)

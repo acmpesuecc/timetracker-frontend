@@ -24,7 +24,7 @@ export default function useLogin() {
             if (result.data?.Login) {
                 update(result.data.Login)
                 const cookies = new Cookies
-                cookies.set("ath", result.data.Login, {maxAge: 7200})
+                cookies.set("ath", result.data.Login, {maxAge: 31536000})
                 return true
             } else {
                 return false

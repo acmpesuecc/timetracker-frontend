@@ -1,4 +1,3 @@
-
 /*
  * This software has been written with the idea of building a minimalistic time tracker.
  * Copyright (c) 2023.  Samarth Ramesh
@@ -10,7 +9,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {Box, Button, Card, Grid, Typography} from "@mui/material";
+import {Button, Card, Grid, Paper, Typography} from "@mui/material";
 import useSheets from "../hooks/useSheets";
 import {useNavigate} from "react-router-dom";
 import {Sheet} from "../gql/graphql";
@@ -30,7 +29,7 @@ export default function App() {
         navigate(url)
     }
     return <>
-        <Box m={2} p={2}>
+        <Paper sx={{m: 2, p: 2}}>
             <Typography variant={"h1"}>Your Sheets</Typography>
             <Grid container p={2} m={2} gap={2} alignItems={"stretch"}>
                 {
@@ -39,7 +38,7 @@ export default function App() {
                             ocf(sh.id)
                         }
                         return <Grid key={sh.id}>
-                            <Card onClick={oc} sx={{height: "100%"}}>
+                            <Card onClick={oc} elevation={3} sx={{height: "100%"}}>
                                 <Grid container p={2} height={"100%"} alignItems={"center"}>
                                     <Typography>{sh.name}</Typography>
                                 </Grid>
@@ -53,7 +52,7 @@ export default function App() {
                     </Card>
                 </Grid>
             </Grid>
-        </Box>
+        </Paper>
         <AddSheetModal open={createSheet} setOpen={setCreateSheet}/>
     </>
 }
