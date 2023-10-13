@@ -24,6 +24,7 @@ export default function App() {
   const navigate = useNavigate();
   const [createSheet, setCreateSheet] = useState(false);
   const onClickCreateSheet = () => {
+    if (!isLoggedIn()) return navigate("/");
     setCreateSheet((s) => !s);
   };
   const ocf = (id: string) => {

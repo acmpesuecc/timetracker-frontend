@@ -107,10 +107,14 @@ export default function Sheet() {
   const id = params["id"] as string;
   const sheet = useSheetInfo(id);
   const punch = usePunch(id);
+  const n = useNavigate();
+
   if (!sheet || !sheet.records) {
     return <Typography>Well, that's embarrassing.</Typography>;
   }
   const ocf = () => {
+    if (!isLoggedIn()) return n("/");
+
     punch().then((r) => {
       if (!r) {
         alert("Error punching");
