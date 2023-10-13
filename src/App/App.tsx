@@ -16,7 +16,7 @@ import {Sheet} from "../gql/graphql";
 import React, {useState} from "react";
 import {Add} from "@mui/icons-material";
 import AddSheetModal from "./AddSheetModal";
-<link rel="stylesheet" href="button.css" />
+
 export default function App() {
     const sheets = useSheets()
     const navigate = useNavigate()
@@ -40,8 +40,7 @@ export default function App() {
                         return <Grid key={sh.id}>
                             <Card onClick={oc} elevation={3} sx={{height: "100%"}}>
                                 <Grid container p={2} height={"100%"} alignItems={"center"}>
-                                    
-                                    <Button id="bt" type={"submit"} variant={"text"} sx={{alignSelf: "stretch"}} >{sh.name}</Button>
+                                    <Typography>{sh.name}</Typography>
                                 </Grid>
                             </Card>
                         </Grid>
