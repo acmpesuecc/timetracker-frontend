@@ -13,11 +13,11 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "\n    mutation Login($username: String!, $password: String!) {\n        Login(username: $username, password: $password)\n    }\n                             ": types.LoginDocument,
-    "\n    query Sheets{\n        Sheets {\n            id,\n            name\n        }\n    }": types.SheetsDocument,
-    "query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n        summary {\n            name,\n            id\n        }\n        records {\n            event,\n            id,\n            time\n        }\n        hasEnded\n        total\n    }\n}": types.GetSheetInfoDocument,
-    "mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n}": types.PunchDocument,
-    "mutation CreateSheet($sheetName: String!, $month: Int!, $year: Int!) {\n    Sheet(sheetName: $sheetName, Month: $month, Year: $year)\n}": types.CreateSheetDocument,
+    "\n  mutation Login($username: String!, $password: String!) {\n    Login(username: $username, password: $password)\n  }\n": types.LoginDocument,
+    "\n  query Sheets {\n    Sheets {\n      id\n      name\n    }\n  }\n": types.SheetsDocument,
+    "\n  query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n      summary {\n        name\n        id\n      }\n      records {\n        event\n        id\n        time\n      }\n      hasEnded\n      total\n    }\n  }\n": types.GetSheetInfoDocument,
+    "\n  mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n  }\n": types.PunchDocument,
+    "\n  mutation CreateSheet($sheetName: String!, $month: Int!, $year: Int!) {\n    Sheet(sheetName: $sheetName, Month: $month, Year: $year)\n  }\n": types.CreateSheetDocument,
 };
 
 /**
@@ -37,23 +37,23 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    mutation Login($username: String!, $password: String!) {\n        Login(username: $username, password: $password)\n    }\n                             "): (typeof documents)["\n    mutation Login($username: String!, $password: String!) {\n        Login(username: $username, password: $password)\n    }\n                             "];
+export function graphql(source: "\n  mutation Login($username: String!, $password: String!) {\n    Login(username: $username, password: $password)\n  }\n"): (typeof documents)["\n  mutation Login($username: String!, $password: String!) {\n    Login(username: $username, password: $password)\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n    query Sheets{\n        Sheets {\n            id,\n            name\n        }\n    }"): (typeof documents)["\n    query Sheets{\n        Sheets {\n            id,\n            name\n        }\n    }"];
+export function graphql(source: "\n  query Sheets {\n    Sheets {\n      id\n      name\n    }\n  }\n"): (typeof documents)["\n  query Sheets {\n    Sheets {\n      id\n      name\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n        summary {\n            name,\n            id\n        }\n        records {\n            event,\n            id,\n            time\n        }\n        hasEnded\n        total\n    }\n}"): (typeof documents)["query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n        summary {\n            name,\n            id\n        }\n        records {\n            event,\n            id,\n            time\n        }\n        hasEnded\n        total\n    }\n}"];
+export function graphql(source: "\n  query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n      summary {\n        name\n        id\n      }\n      records {\n        event\n        id\n        time\n      }\n      hasEnded\n      total\n    }\n  }\n"): (typeof documents)["\n  query getSheetInfo($sheetId: ID!) {\n    Sheet(sheetId: $sheetId) {\n      summary {\n        name\n        id\n      }\n      records {\n        event\n        id\n        time\n      }\n      hasEnded\n      total\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n}"): (typeof documents)["mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n}"];
+export function graphql(source: "\n  mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n  }\n"): (typeof documents)["\n  mutation Punch($sheetId: ID!) {\n    Punch(sheetId: $sheetId)\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation CreateSheet($sheetName: String!, $month: Int!, $year: Int!) {\n    Sheet(sheetName: $sheetName, Month: $month, Year: $year)\n}"): (typeof documents)["mutation CreateSheet($sheetName: String!, $month: Int!, $year: Int!) {\n    Sheet(sheetName: $sheetName, Month: $month, Year: $year)\n}"];
+export function graphql(source: "\n  mutation CreateSheet($sheetName: String!, $month: Int!, $year: Int!) {\n    Sheet(sheetName: $sheetName, Month: $month, Year: $year)\n  }\n"): (typeof documents)["\n  mutation CreateSheet($sheetName: String!, $month: Int!, $year: Int!) {\n    Sheet(sheetName: $sheetName, Month: $month, Year: $year)\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

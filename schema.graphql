@@ -1,48 +1,48 @@
 # This file was generated based on ".graphqlconfig". Do not edit manually.
 
 schema {
-    query: Query
-    mutation: Mutation
+  query: Query
+  mutation: Mutation
 }
 
 type Mutation {
-    CreateAccount(password: String!, username: String!): Boolean
-    Delete(itemId: ID!): Boolean
-    Edit(itemId: ID!, record: IRecord): Boolean
-    Login(password: String!, username: String!): String
-    Punch(sheetId: ID!): ID
-    Sheet(Month: Int!, Year: Int!, sheetName: String!): ID
+  CreateAccount(password: String!, username: String!): Boolean
+  Delete(itemId: ID!): Boolean
+  Edit(itemId: ID!, record: IRecord): Boolean
+  Login(password: String!, username: String!): String
+  Punch(sheetId: ID!): ID
+  Sheet(Month: Int!, Year: Int!, sheetName: String!): ID
 }
 
 type NRecord {
-    event: EventType!
-    id: ID!
-    time: Int!
+  event: EventType!
+  id: ID!
+  time: Int!
 }
 
 type Query {
-    Sheet(sheetId: ID!): SheetInfo
-    Sheets: [Sheet!]
+  Sheet(sheetId: ID!): SheetInfo
+  Sheets: [Sheet!]
 }
 
 type Sheet {
-    id: ID!
-    name: String!
+  id: ID!
+  name: String!
 }
 
 type SheetInfo {
-    hasEnded: Boolean!
-    records: [NRecord!]!
-    summary: Sheet!
-    total: Int!
+  hasEnded: Boolean!
+  records: [NRecord!]!
+  summary: Sheet!
+  total: Int!
 }
 
 enum EventType {
-    End
-    Start
+  End
+  Start
 }
 
 input IRecord {
-    event: EventType
-    time: Int!
+  event: EventType
+  time: Int!
 }

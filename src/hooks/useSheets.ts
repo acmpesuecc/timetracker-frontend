@@ -1,4 +1,3 @@
-
 /*
  * This software has been written with the idea of building a minimalistic time tracker.
  * Copyright (c) 2023.  Samarth Ramesh
@@ -10,18 +9,18 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {useQuery} from "@apollo/client";
-import {GET_SHEETS} from "./queries";
+import { useQuery } from "@apollo/client";
+import { GET_SHEETS } from "./queries";
 
 export default function useSheets() {
-    const { loading, error, data }  = useQuery(GET_SHEETS)
-    if (loading){
-        return []
-    } else if (error){
-        throw error
-    } else if (data && data.Sheets){
-        return data.Sheets
-    } else {
-        return []
-    }
+  const { loading, error, data } = useQuery(GET_SHEETS);
+  if (loading) {
+    return [];
+  } else if (error) {
+    throw error;
+  } else if (data && data.Sheets) {
+    return data.Sheets;
+  } else {
+    return [];
+  }
 }

@@ -1,4 +1,3 @@
-
 /*
  * This software has been written with the idea of building a minimalistic time tracker.
  * Copyright (c) 2023.  Samarth Ramesh
@@ -10,26 +9,29 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {useQuery} from "@apollo/client";
-import {GET_SHEET_INFO} from "./queries";
-import {useEffect} from "react";
+import { useQuery } from "@apollo/client";
+import { GET_SHEET_INFO } from "./queries";
+import { useEffect } from "react";
 
-export default function useSheetInfo(id: string){
-    const {loading, data, error, startPolling, stopPolling} = useQuery(GET_SHEET_INFO, {variables: {sheetId: id}})
-    useEffect(() => {
-        startPolling(5000)
-        return () => {
-            stopPolling()
-        }
-    })
-    if (loading){
-        return null
-    }
-    if (error){
-        console.log(error)
-        return null
-    }
-    if (data && data.Sheet){
-        return data.Sheet
-    }
+export default function useSheetInfo(id: string) {
+  const { loading, data, error, startPolling, stopPolling } = useQuery(
+    GET_SHEET_INFO,
+    { variables: { sheetId: id } },
+  );
+  useEffect(() => {
+    startPolling(5000);
+    return () => {
+      stopPolling();
+    };
+  });
+  if (loading) {
+    return null;
+  }
+  if (error) {
+    console.log(error);
+    return null;
+  }
+  if (data && data.Sheet) {
+    return data.Sheet;
+  }
 }

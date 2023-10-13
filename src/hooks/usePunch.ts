@@ -9,21 +9,21 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {useMutation} from "@apollo/client";
-import {DO_PUNCH, GET_SHEET_INFO} from "./queries";
+import { useMutation } from "@apollo/client";
+import { DO_PUNCH, GET_SHEET_INFO } from "./queries";
 
-export default function (sheetId: string){
-    const [mutateFunction]  = useMutation(DO_PUNCH, {
-        refetchQueries: [GET_SHEET_INFO],
-        variables:{sheetId: sheetId}
-    })
-    return async () => {
-        try {
-            const rv = await mutateFunction()
-            return !!rv;
-        } catch (e) {
-            console.log(e)
-            return false
-        }
+export default function (sheetId: string) {
+  const [mutateFunction] = useMutation(DO_PUNCH, {
+    refetchQueries: [GET_SHEET_INFO],
+    variables: { sheetId: sheetId },
+  });
+  return async () => {
+    try {
+      const rv = await mutateFunction();
+      return !!rv;
+    } catch (e) {
+      console.log(e);
+      return false;
     }
+  };
 }

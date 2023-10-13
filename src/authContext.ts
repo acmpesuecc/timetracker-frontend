@@ -9,7 +9,7 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {createContext} from "react";
+import { createContext } from "react";
 
-export const AuthContext = createContext("")
-export const UpdateAuthContext = createContext((_: string) => {})
+export const AuthContext = createContext("");
+export const UpdateAuthContext = createContext((_: string) => {});

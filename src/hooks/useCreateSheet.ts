@@ -1,4 +1,3 @@
-
 /*
  * This software has been written with the idea of building a minimalistic time tracker.
  * Copyright (c) 2023.  Samarth Ramesh
@@ -10,19 +9,23 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {useMutation} from "@apollo/client";
-import {DO_CREATE_SHEET, GET_SHEETS} from "./queries";
+import { useMutation } from "@apollo/client";
+import { DO_CREATE_SHEET, GET_SHEETS } from "./queries";
 
-export default function useCreateSheet(){
-    const [mutateFunction] = useMutation(DO_CREATE_SHEET, {refetchQueries: [GET_SHEETS]})
-    return (name: string) => {
-        const month = (new Date).getMonth() + 1
-        const year = (new Date).getFullYear()
-        return mutateFunction({variables: {month, year, sheetName: name}}).then(r => {
-            return !!r
-        }).catch(e => {
-            console.log(e)
-            return false;
-        })
-    }
+export default function useCreateSheet() {
+  const [mutateFunction] = useMutation(DO_CREATE_SHEET, {
+    refetchQueries: [GET_SHEETS],
+  });
+  return (name: string) => {
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
+    return mutateFunction({ variables: { month, year, sheetName: name } })
+      .then((r) => {
+        return !!r;
+      })
+      .catch((e) => {
+        console.log(e);
+        return false;
+      });
+  };
 }

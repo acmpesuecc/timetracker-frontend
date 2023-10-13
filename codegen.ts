@@ -9,16 +9,16 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import type { CodegenConfig } from '@graphql-codegen/cli'
+import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-    schema: 'http://localhost:4000/graphql',
-    documents: ['src/**/*.tsx', "src/**/*.ts", "src/hooks/queries.ts"],
-    generates: {
-        './src/gql/': {
-            preset: 'client',
-            plugins: []
-        }
-    }
-}
-export default config
+  schema: "http://localhost:4000/graphql",
+  documents: ["src/**/*.tsx", "src/**/*.ts", "src/hooks/queries.ts"],
+  generates: {
+    "./src/gql/": {
+      preset: "client",
+      plugins: [],
+    },
+  },
+};
+export default config;

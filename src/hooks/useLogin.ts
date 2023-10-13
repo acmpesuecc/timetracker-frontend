@@ -9,29 +9,31 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import {useContext} from "react";
-import {UpdateAuthContext} from "../authContext";
-import {useMutation} from "@apollo/client";
-import {DO_LOGIN} from "./queries";
+import { useContext } from "react";
+import { UpdateAuthContext } from "../authContext";
+import { useMutation } from "@apollo/client";
+import { DO_LOGIN } from "./queries";
 import Cookies from "universal-cookie";
 
 export default function useLogin() {
-    const update = useContext(UpdateAuthContext)
-    const [mutateFunction] = useMutation(DO_LOGIN)
-    return async (username: string, password: string) => {
-        try {
-            const result = await mutateFunction({variables: {username, password}})
-            if (result.data?.Login) {
-                update(result.data.Login)
-                const cookies = new Cookies
-                cookies.set("ath", result.data.Login, {maxAge: 31536000})
-                return true
-            } else {
-                return false
-            }
-        } catch (e) {
-            console.log(e)
-            return false
-        }
+  const update = useContext(UpdateAuthContext);
+  const [mutateFunction] = useMutation(DO_LOGIN);
+  return async (username: string, password: string) => {
+    try {
+      const result = await mutateFunction({
+        variables: { username, password },
+      });
+      if (result.data?.Login) {
+        update(result.data.Login);
+        const cookies = new Cookies();
+        cookies.set("ath", result.data.Login, { maxAge: 31536000 });
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      console.log(e);
+      return false;
     }
+  };
 }
