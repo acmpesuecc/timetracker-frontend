@@ -21,8 +21,8 @@ import Sheet from "./App/Sheet";
 import {createTheme, CssBaseline, ThemeProvider, useMediaQuery} from '@mui/material';
 
 const router = createBrowserRouter([
-                                       {
-                                           path: "/",
+    {
+        path: "/",
                                            element: <Login/>,
                                        },
                                        {
@@ -44,7 +44,7 @@ function getInitialJWT() {
 function Holder() {
     const [jwt, setJwt] = useState(getInitialJWT)
     const appoloOptins = {
-        uri: 'https://tt.samarthr.gq/query',
+        uri: 'http://localhost:4000/query',
         cache: new InMemoryCache(),
         headers: {Authorization: jwt},
     }

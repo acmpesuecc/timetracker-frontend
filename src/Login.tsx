@@ -39,7 +39,7 @@ function Login() {
         <Typography variant={"h1"}>TimeTracker</Typography>
         <form onSubmit={doLogin}>
             <Grid gap={2} container direction={"column"} alignItems={"center"} m={2} width={"fit-content"}
-                  border={"1px solid"} borderColor={theme.palette.grey.A400} p={2}>
+                border={"1px solid"} borderColor={theme.palette.grey.A400} p={2}>
                 <Typography variant={"h3"} m={2}>
                     Login!
                 </Typography>

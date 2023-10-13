@@ -43,7 +43,7 @@ export default function AddSheetModal({open, setOpen}: { open: boolean, setOpen:
                 <Grid container direction={"column"} alignItems={"center"} gap={2}>
                     <Typography variant={"h6"}>Create Sheet</Typography>
                     <TextField value={sheetName} onChange={onChange} label={"Sheet Name"}/>
-                    <Button type={"submit"} disabled={!clickable} variant={"contained"} sx={{alignSelf: "stretch"}}>OK!</Button>
+                    <Button type={"submit"} disabled={!clickable} variant={"text"} sx={{alignSelf: "stretch"}}>OK!</Button>
                 </Grid>
             </form>
         </Card>
