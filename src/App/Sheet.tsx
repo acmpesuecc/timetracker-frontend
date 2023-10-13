@@ -24,11 +24,11 @@ function TimeDisplay({time}: { time: number }) {
 
 function DurationDisplay({dur, variant}: { dur: number, variant?: "h5" }) {
     const hours = ((dur - (dur % 3600)) / 3600).toString()
-    .padStart(2, "0")
+                                               .padStart(2, "0")
     const minutes = (((dur % 3600) - (dur % 60)) / 60).toString()
-    .padStart(2, "0")
+                                                      .padStart(2, "0")
     const seconds = (dur % 60).toString()
-    .padStart(2, "0")
+                              .padStart(2, "0")
 
     return <Typography variant={variant}>{`${hours}:${minutes}:${seconds}`}</Typography>
 }
