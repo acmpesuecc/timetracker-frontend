@@ -9,8 +9,8 @@
  * You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { useParams } from "react-router-dom";
-import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
 import useSheetInfo from "../hooks/useSheetInfo";
 import { NRecord } from "../gql/graphql";
 import {
@@ -24,6 +24,8 @@ import {
   Typography,
 } from "@mui/material";
 import usePunch from "../hooks/usePunch";
+import isLoggedIn from "../hooks/isLoggedIn";
+import Cookies from "universal-cookie";
 
 function TimeDisplay({ time }: { time: number }) {
   const d = new Date(time * 1000);
@@ -54,6 +56,7 @@ function SheetDisplay({ _records }: { _records: NRecord[] }) {
       tmp = [];
     }
   }
+
   return (
     <Table sx={{ width: "60vw" }}>
       <TableHead>

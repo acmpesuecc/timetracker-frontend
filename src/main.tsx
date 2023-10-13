@@ -24,6 +24,7 @@ import {
   ThemeProvider,
   useMediaQuery,
 } from "@mui/material";
+import { AuthCheck } from "./App/Auth";
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/sheets/:id",
-    element: <Sheet />,
+    element: (
+      <AuthCheck>
+        <Sheet />
+      </AuthCheck>
+    ),
   },
 ]);
 
