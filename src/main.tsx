@@ -44,7 +44,7 @@ function getInitialJWT() {
 function Holder() {
     const [jwt, setJwt] = useState(getInitialJWT)
     const appoloOptins = {
-        uri: 'https://tt.samarthr.gq/query',
+        uri: 'https://tt.samarthr.com/query',
         cache: new InMemoryCache(),
         headers: {Authorization: jwt},
     }
